@@ -1,0 +1,155 @@
+<div class="container-fluid" >
+  <div class="row">
+    <div class="col-md-12">
+    <form class="form-horizantal" #f="ngForm" (ngSubmit)="onSearch()">
+    <div class="row" id="seach-customer-data" ngModelGroup="searchCustomerData" #searchCustomerData="ngModelGroup">
+		<div class="col-md-3">
+      <div class="form-group">
+          <label for="customerType" class="col-sm-5 control-label customer">Customer&nbsp;Type&nbsp;*</label>
+          <div class="col-sm-7 ">
+              <select class="form-control" id ="customerType" name="customerType" [ngModel]="defaultCustomerTypeValue" required #customerType="ngModel">
+                  <option>New</option>
+                  <option>Repeat</option>
+                  
+                </select>
+                <span class="help-block" *ngIf="!customerType.valid && customerType.touched"> Please Select customer Type!</span>
+          </div>
+          
+      </div>
+		</div>
+		<div class="col-md-3">
+      <div class="form-group">
+          <label for="customerType" class="col-sm-5 control-label customer">Customer&nbsp;Id&nbsp;*</label>
+          <div class="col-sm-7">
+              <input type="text" name="customerId" class="form-control"  #customerId="ngModel"  [ngModel]="defaultCustomerId" required/>
+          </div>
+          <span class="help-block" *ngIf="!customerId.valid && customerId.touched">CustomerId Required</span>
+      </div>
+		</div>
+		<div class="col-md-3">
+      <div class="form-group">
+        <label for="customerStatusList" class=" col-sm-7 control-label customer ">Customer&nbsp;Status&nbsp;List&nbsp;*</label>
+        <div class="col-sm-5 ">
+           <select class="form-control" id ="customerstatus" name ="customerstatus" [ngModel]="defaultCustomerStatusValue" required #customerstatus="ngModel">
+             <option>DR</option>
+             <option>PV</option>
+             <option>DVP</option>
+           </select>
+        </div>
+        <span class="help-block" *ngIf="!customerstatus.valid && customerstatus.touched"> Select CustomerStatus</span>
+      </div>
+		</div>
+		<div class="col-md-3">
+      <div class="form-group">
+          
+          <div class="col-sm-2 ">
+          <button type="button" class="btn btn-primary"  type="submit" [disabled]="!f.valid">Search</button>
+        </div>
+      </div>
+		</div>
+  </div>
+  </form>
+  <div class="row">
+      <p>customerID :{{search_data.customerId}}</p>
+  </div>
+   
+  <br><br>
+   
+  <div class="row">
+      <form>
+      <div class="col-md-12">
+          <div class="panel panel-default">
+              <div class="panel-body">
+                  <div class="row">
+                    	<div class="col-md-6">
+                       <div class="form-group form-inline">
+                          <label for="assignedTo" class="col-md-2 control-label customer">Assigned&nbsp;To&nbsp;*</label>
+                          <div class="col-md-8 ">
+                              <select class="form-control" id ="assignedTo" style="width:400px;">
+                                  <option>lakshmi.ch@gmail.com</option>
+                                  <option>lakshmi.ch@gmail.com</option>
+                                  <option>lakshmi.ch@gmail.com</option>
+                                  <option>lakshmi.ch@gmail.com</option>
+                                  <option>lakshmi.ch@gmail.com</option>
+                                  <option>lakshmi.ch@gmail.com</option>
+                                  <option>lakshmi.ch@gmail.com</option>
+                                  <option>lakshmi.ch@gmail.com</option>
+                                  <option>lakshmi.ch@gmail.com</option>
+                                </select>
+                          </div>
+                        </div>
+                    </div>
+                    
+                      <div class="col-md-3">
+                       <div class="form-group form-inline">
+                        <div class="col-sm-3 ">
+                              <button type="button" class="btn btn-default">Assign</button>
+                          </div>
+                          <div class="col-sm-3 ">
+                              <button type="button" class="btn btn-default">Un Assign</button>
+                          </div>
+                        </div>
+                    </div>
+                    
+                    </div>
+                </div>
+          </div>
+      </div>
+    </form>
+  </div>
+  <br><br>
+
+  <div class="row">
+    <div class="col-md-12">
+
+    <div class="panel panel-default">
+    <div class="panel panel-heading panel-info">
+    <button type="button" class="btn btn-default" style="margin-left:1054px ">Export To Excel</button>
+     </div>
+    <div class="panel-body">
+    <div class="table-responsive">
+    <table datatable  class="table table-bordered">
+      <thead>
+        <tr>
+            <th></th>
+            <th>CustomerId</th>
+            <th>Customer Name</th>
+            <th>Phone Number</th>
+            <th>PAN Card</th>
+            <th>Assigned By</th>
+            <th>Assigned To</th>
+            <th>Official Email</th>
+            <th>Cibil</th>
+            <th>gmail</th>
+            <th>SLQ</th>
+            <th>Action</th>
+            
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor = "let x of dataValue">
+          <td><input type="checkbox" [checked]="chk" [id]="customerId" ></td>
+          <td>{{x.customerId}}</td>
+          <td>{{x.customerName}}</td>
+          <td>{{x.phoneNo}}</td>
+          <td>{{x.PanNo}}</td>
+          <td>{{x.assignedBy}}</td>
+          <td>{{x.AssignedTo}}</td>
+          <td>{{x.officialEmail}}</td>
+          <td>{{x.cibil}}</td>
+          <td>{{x.gm}}</td>
+          <td>{{x.slq}}</td>
+          <td><!--<a data-toggle="modal" data-target="#myModal">verify</a>-->
+            <a routerLink="/customerVerification" routerLinkActive="active">
+              verify</a></td>
+        </tr>
+       
+        </tbody></table></div></div></div>
+      </div>
+
+    </div>
+   
+    </div>
+    </div>
+
+</div><!--container-->
